@@ -14,6 +14,13 @@ root_path = os.getcwd()
 build_root_path = f"{root_path}/nly_build"
 install_root_path = f"{root_path}/nly_install"
 
+if build_type == "Debug":
+    build_root_path = f"{build_root_path}_d"
+    install_root_path = f"{install_root_path}_d"
+elif build_type == "Release":
+    build_root_path = f"{build_root_path}_r"
+    install_root_path = f"{install_root_path}_r"
+
 
 def get_target_build_path(package_name: str):
     return f"{build_root_path}/{package_name}_build_path"
