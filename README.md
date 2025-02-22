@@ -4,6 +4,7 @@
 
 | 库                                                           | 说明                                                         |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [googletest](https://github.com/google/googletest/releases/tag/v1.16.0) | /                                                            |
 | [abseil-cpp](https://github.com/abseil/abseil-cpp/releases/tag/20250127.0) | /                                                            |
 | [protobuf](https://github.com/protocolbuffers/protobuf/releases/tag/v30.0-rc1) | 此库依赖 abseil-cpp                                          |
 | [boost](https://github.com/boostorg/boost/releases/tag/boost-1.87.0) | 当前用的 [boost-1.87.0-cmake.zip](https://github.com/boostorg/boost/releases/download/boost-1.87.0/boost-1.87.0-cmake.zip) |

@@ -104,4 +104,8 @@ if not build_third_package(
 if not build_third_package("boost"):
     exit(-1)
 
+# for googletest
+if not build_third_package("googletest"):
+    exit(-1)
+
 print_with_notify("finish")
