@@ -2,12 +2,13 @@
 
 ## 第三方库列表
 
-| 库                                                           | 说明                                                         |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [googletest](https://github.com/google/googletest/releases/tag/v1.16.0) | /                                                            |
-| [abseil-cpp](https://github.com/abseil/abseil-cpp/releases/tag/20250127.0) | /                                                            |
-| [protobuf](https://github.com/protocolbuffers/protobuf/releases/tag/v30.0-rc1) | 此库依赖 abseil-cpp                                          |
-| [boost](https://github.com/boostorg/boost/releases/tag/boost-1.87.0) | 当前用的 [boost-1.87.0-cmake.zip](https://github.com/boostorg/boost/releases/download/boost-1.87.0/boost-1.87.0-cmake.zip) |
+| 库                                                           | 说明                                                         | target                                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [googletest](https://github.com/google/googletest/releases/tag/v1.16.0) | /                                                            | GTest::gtest_main                                            |
+| [abseil-cpp](https://github.com/abseil/abseil-cpp/releases/tag/20250127.0) | /                                                            | absl::strings<br>absl::base<br>...                           |
+| [protobuf](https://github.com/protocolbuffers/protobuf/releases/tag/v30.0-rc1) | 此库依赖 abseil-cpp                                          | protobuf::libprotobuf<br/>protobuf::libprotobuf-lite<br/>protobuf::libprotoc<br/>... |
+| [boost](https://github.com/boostorg/boost/releases/tag/boost-1.87.0) | 当前用的 [boost-1.87.0-cmake.zip](https://github.com/boostorg/boost/releases/download/boost-1.87.0/boost-1.87.0-cmake.zip) | Boost::filesystem<br/>...                                    |
+| [fmt](https://github.com/fmtlib/fmt/releases/tag/11.1.3)     | /                                                            | fmt::fmt                                                     |
 
 
 
@@ -21,77 +22,37 @@
 
 
 
-## 使用示例
+## CMake
 
-* CMakeLists.txt
+* 参考：[nly](https://github.com/szn409/nly.git)
 
-  ```cmake
-  cmake_minimum_required(VERSION 3.0.0)
-  project(szn)
-  
-  # 指定 C++17, 因为 nly_upstream 编译的时候指定了 C++17
-  set(CMAKE_CXX_STANDARD 17)
-  set(CMAKE_CXX_STANDARD_REQUIRED True)
-  
-  # 指定 nly_upstream 的安装路径, 用于 find_package
-  set(nly_upstream_install_root "D:/nly_upstream/nly_install")
-  list(APPEND CMAKE_PREFIX_PATH "${nly_upstream_install_root}/abseil-cpp_install_path")
-  list(APPEND CMAKE_PREFIX_PATH "${nly_upstream_install_root}/protobuf_install_path")
-  list(APPEND CMAKE_PREFIX_PATH "${nly_upstream_install_root}/boost_install_path")
-  
-  find_package(absl REQUIRED)
-  find_package(protobuf REQUIRED)
-  find_package(boost_filesystem REQUIRED) # 此处以 filesystem 为示例
-  
-  add_executable(szn 
-    ${CMAKE_SOURCE_DIR}/main.cpp 
-  
-    # 由 nly_upstream 生成的 protoc.exe 生成的文件
-    ${CMAKE_SOURCE_DIR}/templateFile.pb.cc
-    )
-  
-  target_link_libraries(szn PRIVATE
-    # 测试 abseil-cpp 的可用性
-    absl::strings absl::base
-  
-    # 测试 protobuf 的可用性
-    protobuf::libprotobuf protobuf::libprotobuf-lite protobuf::libprotoc
+* 注意点
+
+  * 使用者的 CXX 的版本，要和此库保持一致（此库默认使用 CXX17）
+
+  * find_package 示例
+
+    ```cmake
+    # 指定 nly_upstream 的安装路径, 用于 find_package
+    set(NLY_UPSTREAM_INSTALL "D:/nly_upstream/nly_install")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/abseil-cpp_install_path")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/protobuf_install_path")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/boost_install_path")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/fmt_install_path")
     
-    # 得以这种方式添加
-    Boost::filesystem 
-    )
-  
-  target_include_directories(szn PRIVATE ${CMAKE_SOURCE_DIR})
-  ```
+    find_package(absl REQUIRED)
+    find_package(protobuf REQUIRED)
+    find_package(Boost REQUIRED COMPONENTS  date_time serialization)
+    find_package(fmt REQUIRED)
+    
+    # 按需链接即可
+    target_link_libraries(your_target PUBLIC
+      absl::strings absl::base
+      protobuf::libprotobuf protobuf::libprotobuf-lite protobuf::libprotoc
+      Boost::date_time Boost::serialization
+      fmt::fmt
+      )
+    ```
 
-* main.cpp
-
-  ```c++
-  #include "absl/strings/str_cat.h"
-  #include "boost/filesystem.hpp"
-  #include "templateFile.pb.h"
-  
-  int main()
-  {
-      std::string hello = "Hello";
-      std::string world = "World";
-      std::string message = absl::StrCat(hello, ", ", world, "!");
-      // message = "Hello, World!"
-  
-      CornerTemplate cornerTemplate;
-      cornerTemplate.set_imgwidth(1024);
-      std::string out;
-      if (!cornerTemplate.SerializeToString(&out))
-      {
-          return {};
-      }
-      auto size = out.size();
-      // size = 3
-  
-      auto tmp = boost::filesystem::current_path();
-      // tmp = {m_pathname=L"D:\\cmake_test\\out\\build\\x64-Debug\\Debug" }
-  
-      return 0;
-  }
-  ```
+    
 

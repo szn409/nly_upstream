@@ -1,2 +1,3 @@
 /nly_build*
 /nly_install*
+/upstream/fmt/run-msbuild.bat

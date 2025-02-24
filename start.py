@@ -1,8 +1,9 @@
-import os
+﻿import os
 
 # 此处定义编译相关的参数, 根据需要调整即可
 generate = "Visual Studio 16 2019"
 platform = "x64"
+# build_type = "Release"
 build_type = "Debug"
 cxx_standard = 17
 
@@ -113,6 +114,10 @@ if not build_third_package("boost"):
 
 # for googletest
 if not build_third_package("googletest"):
+    exit(-1)
+
+# for fmt
+if not build_third_package("fmt"):
     exit(-1)
 
 print_with_notify("✨✨ finish ✨✨")
