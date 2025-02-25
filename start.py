@@ -124,4 +124,8 @@ if not build_third_package("fmt"):
 if not build_third_package("json", True, f'{config_param} -DJSON_BuildTests=OFF'):
     exit(-1)
 
+# for hiredis
+if not build_third_package("hiredis"):
+    exit(-1)
+
 print_with_notify("✨✨ finish ✨✨")

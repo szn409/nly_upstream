@@ -10,6 +10,7 @@
 | [boost](https://github.com/boostorg/boost/releases/tag/boost-1.87.0) | 当前用的 [boost-1.87.0-cmake.zip](https://github.com/boostorg/boost/releases/download/boost-1.87.0/boost-1.87.0-cmake.zip) | Boost::filesystem<br/>...                                    |
 | [fmt](https://github.com/fmtlib/fmt/releases/tag/11.1.3)     | /                                                            | fmt::fmt                                                     |
 | [json](https://github.com/nlohmann/json/releases/tag/v3.11.3) | /                                                            | nlohmann_json::nlohmann_json                                 |
+| [hiredis](https://github.com/redis/hiredis/releases/tag/v1.2.0) | /                                                            | hiredis::hiredis                                             |
 
 
 
@@ -47,6 +48,7 @@
     find_package(Boost REQUIRED COMPONENTS  date_time serialization)
     find_package(fmt REQUIRED)
     find_package(nlohmann_json REQUIRED)
+    find_package(hiredis REQUIRED)
     
     # 按需链接即可
     target_link_libraries(your_target PUBLIC
@@ -55,6 +57,7 @@
       Boost::date_time Boost::serialization
       fmt::fmt
       nlohmann_json::nlohmann_json
+      hiredis::hiredis  
       )
     ```
     
