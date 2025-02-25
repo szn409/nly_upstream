@@ -9,6 +9,7 @@
 | [protobuf](https://github.com/protocolbuffers/protobuf/releases/tag/v30.0-rc1) | 此库依赖 abseil-cpp                                          | protobuf::libprotobuf<br/>protobuf::libprotobuf-lite<br/>protobuf::libprotoc<br/>... |
 | [boost](https://github.com/boostorg/boost/releases/tag/boost-1.87.0) | 当前用的 [boost-1.87.0-cmake.zip](https://github.com/boostorg/boost/releases/download/boost-1.87.0/boost-1.87.0-cmake.zip) | Boost::filesystem<br/>...                                    |
 | [fmt](https://github.com/fmtlib/fmt/releases/tag/11.1.3)     | /                                                            | fmt::fmt                                                     |
+| [json](https://github.com/nlohmann/json/releases/tag/v3.11.3) | /                                                            | nlohmann_json::nlohmann_json                                 |
 
 
 
@@ -39,11 +40,13 @@
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/protobuf_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/boost_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/fmt_install_path")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/json_install_path")
     
     find_package(absl REQUIRED)
     find_package(protobuf REQUIRED)
     find_package(Boost REQUIRED COMPONENTS  date_time serialization)
     find_package(fmt REQUIRED)
+    find_package(nlohmann_json REQUIRED)
     
     # 按需链接即可
     target_link_libraries(your_target PUBLIC
@@ -51,8 +54,8 @@
       protobuf::libprotobuf protobuf::libprotobuf-lite protobuf::libprotoc
       Boost::date_time Boost::serialization
       fmt::fmt
+      nlohmann_json::nlohmann_json
       )
     ```
-
     
 

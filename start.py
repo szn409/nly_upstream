@@ -120,4 +120,8 @@ if not build_third_package("googletest"):
 if not build_third_package("fmt"):
     exit(-1)
 
+# for nlohmann json
+if not build_third_package("json", True, f'{config_param} -DJSON_BuildTests=OFF'):
+    exit(-1)
+
 print_with_notify("✨✨ finish ✨✨")
