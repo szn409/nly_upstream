@@ -90,13 +90,12 @@ def build_third_package(
 
 
 # for abseil-cpp
-absl_name = "abseil-cpp"
-if not build_third_package(absl_name):
+if not build_third_package("abseil-cpp"):
     exit(-1)
 
 # for protobuf
 protobuf_config_param = f"{config_param} \
--DCMAKE_PREFIX_PATH={get_target_install_path(absl_name)} \
+-DCMAKE_PREFIX_PATH={get_target_install_path('abseil-cpp')} \
 -Dprotobuf_LOCAL_DEPENDENCIES_ONLY=ON \
 -Dprotobuf_BUILD_TESTS=OFF \
 -Dprotobuf_WITH_ZLIB=OFF \
@@ -121,11 +120,23 @@ if not build_third_package("fmt"):
     exit(-1)
 
 # for nlohmann json
-if not build_third_package("json", True, f'{config_param} -DJSON_BuildTests=OFF'):
+if not build_third_package("json", True, f"{config_param} -DJSON_BuildTests=OFF"):
     exit(-1)
 
 # for hiredis
 if not build_third_package("hiredis"):
+    exit(-1)
+
+# for redis-plus-plus
+redis_plus_plus_config_param = f"{config_param} \
+-DREDIS_PLUS_PLUS_BUILD_STATIC=OFF \
+-DREDIS_PLUS_PLUS_BUILD_TEST=OFF \
+-DCMAKE_PREFIX_PATH={get_target_install_path('hiredis')}"
+if not build_third_package(
+    "redis-plus-plus",
+    True,
+    redis_plus_plus_config_param,
+):
     exit(-1)
 
 print_with_notify("✨✨ finish ✨✨")

@@ -11,6 +11,7 @@
 | [fmt](https://github.com/fmtlib/fmt/releases/tag/11.1.3)     | /                                                            | fmt::fmt                                                     |
 | [json](https://github.com/nlohmann/json/releases/tag/v3.11.3) | /                                                            | nlohmann_json::nlohmann_json                                 |
 | [hiredis](https://github.com/redis/hiredis/releases/tag/v1.2.0) | /                                                            | hiredis::hiredis                                             |
+| [redis-plus-plus](https://github.com/sewenew/redis-plus-plus/releases/tag/1.3.13) | 此库依赖 hiredis                                             | redis++::redis++                                             |
 
 
 
@@ -42,6 +43,8 @@
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/boost_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/fmt_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/json_install_path")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/hiredis_install_path")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/redis-plus-plus_install_path")
     
     find_package(absl REQUIRED)
     find_package(protobuf REQUIRED)
@@ -49,6 +52,7 @@
     find_package(fmt REQUIRED)
     find_package(nlohmann_json REQUIRED)
     find_package(hiredis REQUIRED)
+    find_package(redis++ REQUIRED)
     
     # 按需链接即可
     target_link_libraries(your_target PUBLIC
@@ -58,6 +62,7 @@
       fmt::fmt
       nlohmann_json::nlohmann_json
       hiredis::hiredis  
+      redis++::redis++  
       )
     ```
     
