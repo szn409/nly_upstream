@@ -147,4 +147,15 @@ if not build_third_package("cpp-httplib"):
 if not build_third_package("libzmq"):
     exit(-1)
 
+# for cppzmq
+cppzmq_config_param = f"{config_param} \
+-DCPPZMQ_BUILD_TESTS=OFF \
+-DCMAKE_PREFIX_PATH={get_target_install_path('libzmq')}"
+if not build_third_package(
+    "cppzmq",
+    True,
+    cppzmq_config_param,
+):
+    exit(-1)
+
 print_with_notify("✨✨ finish ✨✨")
