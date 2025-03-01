@@ -158,4 +158,14 @@ if not build_third_package(
 ):
     exit(-1)
 
+# for range-v3
+range_v3_config_param = f"{config_param} \
+-DRANGE_V3_DOCS=OFF \
+-DRANGE_V3_TESTS=OFF \
+-DRANGE_V3_EXAMPLES=OFF \
+-DRANGE_V3_PERF=OFF \
+-DRANGE_V3_HEADER_CHECKS=OFF"
+if not build_third_package("range-v3", True, range_v3_config_param):
+    exit(-1)
+
 print_with_notify("✨✨ finish ✨✨")

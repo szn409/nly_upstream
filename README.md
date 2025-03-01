@@ -16,6 +16,7 @@
 | [thread-pool](https://github.com/bshoshany/thread-pool/releases/tag/v5.0.0) | 此库无 CMakeLists.txt<br><font color = red>拷贝 include/BS_thread_pool.hpp 使用即可</font> | /                                                            |
 | [libzmq](https://github.com/zeromq/libzmq/releases/tag/v4.3.5) | /                                                            | libzmq                                                       |
 | [cppzmq](https://github.com/zeromq/cppzmq/releases/tag/v4.10.0) | 此库依赖 libzmq                                              | cppzmq                                                       |
+| [range-v3](https://github.com/ericniebler/range-v3/releases/tag/0.12.0) | /                                                            | range-v3                                                     |
 
 
 
@@ -52,6 +53,7 @@
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/cpp-httplib_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/libzmq_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/cppzmq_install_path")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/range-v3_install_path")
     
     find_package(absl REQUIRED)
     find_package(protobuf REQUIRED)
@@ -63,6 +65,7 @@
     find_package(httplib REQUIRED)
     find_package(ZeroMQ REQUIRED) # for libzmq
     find_package(cppzmq REQUIRED)
+    find_package(range-v3 REQUIRED)
     
     # 按需链接即可
     target_link_libraries(your_target PUBLIC
@@ -76,6 +79,7 @@
       httplib::httplib
       libzmq
       cppzmq
+      range-v3  
       )
     ```
     
