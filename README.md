@@ -13,6 +13,7 @@
 | [hiredis](https://github.com/redis/hiredis/releases/tag/v1.2.0) | /                                                            | hiredis::hiredis                                             |
 | [redis-plus-plus](https://github.com/sewenew/redis-plus-plus/releases/tag/1.3.13) | 此库依赖 hiredis                                             | redis++::redis++                                             |
 | [cpp-httplib](https://github.com/yhirose/cpp-httplib/releases/tag/v0.19.0) | /                                                            | httplib::httplib                                             |
+| [thread-pool](https://github.com/bshoshany/thread-pool/releases/tag/v5.0.0) | 此库无 CMakeLists.txt<br>拷贝 include/BS_thread_pool.hpp 使用即可 | /                                                            |
 
 
 
