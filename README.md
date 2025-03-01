@@ -14,6 +14,7 @@
 | [redis-plus-plus](https://github.com/sewenew/redis-plus-plus/releases/tag/1.3.13) | 此库依赖 hiredis                                             | redis++::redis++                                             |
 | [cpp-httplib](https://github.com/yhirose/cpp-httplib/releases/tag/v0.19.0) | /                                                            | httplib::httplib                                             |
 | [thread-pool](https://github.com/bshoshany/thread-pool/releases/tag/v5.0.0) | 此库无 CMakeLists.txt<br>拷贝 include/BS_thread_pool.hpp 使用即可 | /                                                            |
+| [libzmq](https://github.com/zeromq/libzmq/releases/tag/v4.3.5) | /                                                            | libzmq                                                       |
 
 
 
@@ -48,6 +49,7 @@
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/hiredis_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/redis-plus-plus_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/cpp-httplib_install_path")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/libzmq_install_path")
     
     find_package(absl REQUIRED)
     find_package(protobuf REQUIRED)
@@ -57,6 +59,7 @@
     find_package(hiredis REQUIRED)
     find_package(redis++ REQUIRED)
     find_package(httplib REQUIRED)
+    find_package(ZeroMQ REQUIRED) # for libzmq
     
     # 按需链接即可
     target_link_libraries(your_target PUBLIC
@@ -68,6 +71,7 @@
       hiredis::hiredis  
       redis++::redis++  
       httplib::httplib
+      libzmq  
       )
     ```
     

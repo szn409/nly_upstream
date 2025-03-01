@@ -143,4 +143,8 @@ if not build_third_package(
 if not build_third_package("cpp-httplib"):
     exit(-1)
 
+# for libzmq
+if not build_third_package("libzmq"):
+    exit(-1)
+
 print_with_notify("✨✨ finish ✨✨")
