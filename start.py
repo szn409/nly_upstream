@@ -139,4 +139,8 @@ if not build_third_package(
 ):
     exit(-1)
 
+# for cpp-httplib
+if not build_third_package("cpp-httplib"):
+    exit(-1)
+
 print_with_notify("✨✨ finish ✨✨")
