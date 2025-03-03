@@ -168,4 +168,21 @@ range_v3_config_param = f"{config_param} \
 if not build_third_package("range-v3", True, range_v3_config_param):
     exit(-1)
 
+# for opencv
+opencv_config_param = f"{config_param} \
+-DBUILD_SHARED_LIBS=ON \
+-DBUILD_opencv_apps=OFF \
+-DBUILD_opencv_js=OFF \
+-DBUILD_ANDROID_PROJECTS=OFF \
+-DBUILD_DOCS=OFF \
+-DBUILD_EXAMPLES=OFF \
+-DBUILD_PERF_TESTS=OFF \
+-DBUILD_TESTS=OFF \
+-DBUILD_FAT_JAVA_LIB=OFF \
+-DBUILD_ANDROID_SERVICE=OFF \
+-DBUILD_JAVA=OFF \
+-DBUILD_KOTLIN_EXTENSIONS=OFF"
+if not build_third_package("opencv", True, opencv_config_param):
+    exit(-1)
+
 print_with_notify("✨✨ finish ✨✨")
