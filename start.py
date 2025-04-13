@@ -185,4 +185,14 @@ opencv_config_param = f"{config_param} \
 if not build_third_package("opencv", True, opencv_config_param):
     exit(-1)
 
+# for qwindowkit
+qwindowkit_param = f"{config_param} \
+-DQT_VERSION_MAJOR=5"
+if not build_third_package(
+    "qwindowkit",
+    True,
+    qwindowkit_param,
+):
+    exit(-1)
+
 print_with_notify("✨✨ finish ✨✨")

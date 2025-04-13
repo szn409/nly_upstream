@@ -18,6 +18,8 @@
 | [cppzmq](https://github.com/zeromq/cppzmq/releases/tag/v4.10.0) | 此库依赖 libzmq                                              | cppzmq                                                       |
 | [range-v3](https://github.com/ericniebler/range-v3/releases/tag/0.12.0) | /                                                            | range-v3                                                     |
 | [opencv](https://github.com/opencv/opencv/releases/tag/4.11.0) | /                                                            | ${OpenCV_LIBS}                                               |
+|                                                              |                                                              |                                                              |
+| [qwindowkit](https://github.com/stdware/qwindowkit)          | qt 相关<br />使用的 commit：0131d67<br />当前编译脚本使用的  qt 主版本是 5，可根据需要调整 | QWindowKit::Widgets<br />QtQuick 相关见官网说明              |
 
 
 
@@ -56,6 +58,7 @@
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/cppzmq_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/range-v3_install_path")
     list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/opencv_install_path")
+    list(APPEND CMAKE_PREFIX_PATH "${NLY_UPSTREAM_INSTALL}/qwindowkit_install_path")
     
     find_package(absl REQUIRED)
     find_package(protobuf REQUIRED)
@@ -69,6 +72,7 @@
     find_package(cppzmq REQUIRED)
     find_package(range-v3 REQUIRED)
     find_package(opencv REQUIRED)
+    find_package(QWindowKit COMPONENTS Core Widgets REQUIRED) # 未关注 QtQuick
     
     # 按需链接即可
     target_link_libraries(your_target PUBLIC
@@ -84,6 +88,7 @@
       cppzmq
       range-v3
       ${OpenCV_LIBS}
+      QWindowKit::Widgets
       )
     ```
     
