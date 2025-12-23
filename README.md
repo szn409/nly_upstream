@@ -18,6 +18,7 @@
 | [cppzmq](https://github.com/zeromq/cppzmq/releases/tag/v4.10.0) | 此库依赖 libzmq                                              | cppzmq                                                       |
 | [range-v3](https://github.com/ericniebler/range-v3/releases/tag/0.12.0) | /                                                            | range-v3                                                     |
 | [opencv](https://github.com/opencv/opencv/releases/tag/4.11.0) | /                                                            | ${OpenCV_LIBS}                                               |
+| [cppitertools](https://github.com/ryanhaining/cppitertools)  | 当前版本：[531b3d7](https://github.com/ryanhaining/cppitertools/commit/531b3d753d2bbfe3b0ababe61c2e95e965c54a66) | cppitertools                                                 |
 |                                                              |                                                              |                                                              |
 | [qwindowkit](https://github.com/stdware/qwindowkit)          | qt 相关<br />使用的 commit：0131d67<br />当前编译脚本使用的  qt 主版本是 5，可根据需要调整 | QWindowKit::Widgets<br />QtQuick 相关见官网说明              |
 
