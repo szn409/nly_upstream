@@ -1,4 +1,4 @@
-﻿import os
+import os
 
 # 此处定义编译相关的参数, 根据需要调整即可
 generate = "Visual Studio 16 2019"
@@ -195,7 +195,7 @@ if not build_third_package(
 ):
     exit(-1)
 
-# for qwindowkit
+# for cppitertools
 if not build_third_package("cppitertools"):
     exit(-1)
 
